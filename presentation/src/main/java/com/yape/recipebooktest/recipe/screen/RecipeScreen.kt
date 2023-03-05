@@ -1,5 +1,6 @@
 package com.yape.recipebooktest.recipe.screen
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -21,10 +22,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.skydoves.landscapist.glide.GlideImage
 import com.yape.domain.recipe.model.Ingredient
 import com.yape.domain.recipe.model.Recipe
 import com.yape.recipebooktest.R
+import com.yape.recipebooktest.common.screen.Image
+import com.yape.recipebooktest.common.screen.Title
+import com.yape.recipebooktest.recipe.router.RecipeRouter
 import com.yape.recipebooktest.ui.theme.Multiplier
 import com.yape.recipebooktest.ui.theme.Multiplier_X2
 import com.yape.recipebooktest.ui.theme.Multiplier_X4
@@ -92,29 +95,20 @@ private fun SearchScreen(onSearch: (String) -> Unit) {
 
 @Composable
 private fun RecipeScreen(recipe: Recipe) {
-    Card(modifier = Modifier.padding(all = Multiplier_X4), elevation = Multiplier_X2) {
+    Card(
+        modifier = Modifier
+            .padding(all = Multiplier_X4)
+            .clickable {
+                val router = RecipeRouter()
+                router.goToRecipeDetail(recipe)
+            },
+        elevation = Multiplier_X2,
+    ) {
         Column {
             Title(title = recipe.name)
             Image(imagePath = recipe.image)
         }
     }
-}
-
-@Composable
-private fun Title(title: String) {
-    Text(
-        text = title,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = Multiplier_X2, vertical = Multiplier_X4),
-        style = MaterialTheme.typography.h4,
-        textAlign = TextAlign.Center
-    )
-}
-
-@Composable
-private fun Image(imagePath: String) {
-    GlideImage(imageModel = imagePath, modifier = Modifier.fillMaxWidth())
 }
 
 @Preview(showBackground = true)
