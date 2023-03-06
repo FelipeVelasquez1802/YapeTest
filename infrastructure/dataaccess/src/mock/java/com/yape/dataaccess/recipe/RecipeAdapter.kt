@@ -1,6 +1,7 @@
 package com.yape.dataaccess.recipe
 
 import com.yape.dataaccess.recipe.dto.IngredientDto
+import com.yape.dataaccess.recipe.dto.LocationDto
 import com.yape.dataaccess.recipe.dto.RecipeDto
 import javax.inject.Inject
 
@@ -8,6 +9,12 @@ internal class RecipeAdapter @Inject constructor() {
     fun getRecipes(): List<RecipeDto> {
         val ingredients = listOf(
             IngredientDto(name = "banana", amount = 0.25, unit = "cup")
+        )
+        val location = LocationDto(
+            name = "Singapore",
+            description = "Marker in Singapore",
+            latitude = 1.35,
+            longitude = 103.87
         )
         return listOf(
             RecipeDto(
@@ -24,25 +31,29 @@ internal class RecipeAdapter @Inject constructor() {
                     Por último, agrega las tiras de pollo a la ensalada y vierte la salsa César por encima. Mezcla todo bien para asegurarte de que la ensalada esté bien cubierta con la salsa. Sirve inmediatamente y disfruta de una deliciosa ensalada César fresca y llena de sabor.
                 """,
                 image = "https://spoonacular.com/recipeImages/716426-312x231.jpg",
-                ingredients = ingredients
+                ingredients = ingredients,
+                location = location
             ),
             RecipeDto(
                 name = "Example 2",
                 description = "Description 2",
                 image = "https://spoonacular.com/recipeImages/716426-312x231.jpg",
-                ingredients = ingredients
+                ingredients = ingredients,
+                location = location
             ),
             RecipeDto(
                 name = "Example 3",
                 description = "Description 3",
                 image = "https://spoonacular.com/recipeImages/716426-312x231.jpg",
-                ingredients = ingredients
+                ingredients = ingredients,
+                location = location
             ),
             RecipeDto(
                 name = "Example 4",
                 description = "Description 4",
                 image = "www.image.com/image4.png",
-                ingredients = ingredients
+                ingredients = ingredients,
+                location = location
             )
         )
     }

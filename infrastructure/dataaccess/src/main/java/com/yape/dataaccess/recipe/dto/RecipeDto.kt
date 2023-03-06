@@ -5,5 +5,6 @@ internal data class RecipeDto(
     val description: String,
     val image: String,
     val showMapButton: Boolean = true,
-    val ingredients: List<IngredientDto>
+    val ingredients: List<IngredientDto>,
+    val location: LocationDto
 )

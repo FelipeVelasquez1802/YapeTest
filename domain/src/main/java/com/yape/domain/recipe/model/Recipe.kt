@@ -9,7 +9,8 @@ class Recipe(
     val description: String,
     val image: String,
     val showMapButton: Boolean,
-    val ingredients: List<Ingredient>
+    val ingredients: List<Ingredient>,
+    val location: Location
 ) {
     init {
         validateName()

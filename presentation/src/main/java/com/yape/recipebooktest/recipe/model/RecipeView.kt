@@ -9,5 +9,6 @@ internal data class RecipeView(
     val description: String,
     val image: String,
     val showMapButton: Boolean,
-    val ingredients: List<IngredientView>
+    val ingredients: List<IngredientView>,
+    val location: LocationView
 ) : Parcelable

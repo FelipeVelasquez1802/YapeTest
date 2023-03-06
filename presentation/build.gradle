@@ -4,6 +4,7 @@ plugins {
     id 'com.google.dagger.hilt.android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -21,6 +22,7 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        manifestPlaceholders = [mapsApiKey:"\"${MAPS_API_KEY}\""]
     }
 
     buildTypes {
@@ -80,4 +82,8 @@ dependencies {
 
     // Glide
     implementation "com.github.skydoves:landscapist-glide:2.0.0"
+
+    // Map
+    implementation 'com.google.maps.android:maps-compose:2.8.0'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 }

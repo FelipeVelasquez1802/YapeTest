@@ -6,17 +6,27 @@ import com.yape.recipebooktest.recipe.model.RecipeView
 internal object RecipeMapper : BaseMapper<RecipeView, Recipe>() {
     override fun fromViewToDomain(view: RecipeView): Recipe {
         val ingredients = IngredientMapper.fromListViewToListDomain(view.ingredients)
-        return Recipe(view.name, view.description, view.image, view.showMapButton, ingredients)
+        val location = LocationMapper.fromViewToDomain(view.location)
+        return Recipe(
+            view.name,
+            view.description,
+            view.image,
+            view.showMapButton,
+            ingredients,
+            location
+        )
     }
 
     override fun fromDomainToView(domain: Recipe): RecipeView {
         val ingredients = IngredientMapper.fromListDomainToListView(domain.ingredients)
+        val location = LocationMapper.fromDomainToView(domain.location)
         return RecipeView(
             domain.name,
             domain.description,
             domain.image,
             domain.showMapButton,
-            ingredients
+            ingredients,
+            location
         )
     }
 }

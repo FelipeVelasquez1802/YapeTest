@@ -18,9 +18,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.text.HtmlCompat
 import com.yape.domain.recipe.model.Ingredient
+import com.yape.domain.recipe.model.Location
 import com.yape.domain.recipe.model.Recipe
 import com.yape.recipebooktest.common.screen.Image
 import com.yape.recipebooktest.common.screen.Title
+import com.yape.recipebooktest.recipe.router.RecipeRouter
 import com.yape.recipebooktest.ui.theme.Multiplier_X100
 import com.yape.recipebooktest.ui.theme.Multiplier_X4
 import com.yape.recipebooktest.ui.theme.RecipeBookTestTheme
@@ -44,7 +46,7 @@ fun RecipeDetailScreen(recipe: Recipe) {
             IngredientScreen(ingredient = ingredient)
         }
         item { Divider() }
-        item { MapButtonScreen() }
+        item { MapButtonScreen(recipe.location) }
     }
 }
 
@@ -74,9 +76,12 @@ private fun DescriptionScreen(description: String) {
 }
 
 @Composable
-private fun MapButtonScreen() {
+private fun MapButtonScreen(location: Location) {
     Button(
-        onClick = { /*TODO*/ },
+        onClick = {
+            val router = RecipeRouter()
+            router.goToMap(location)
+        },
         modifier = Modifier
             .padding(horizontal = Multiplier_X4)
             .fillMaxWidth()
@@ -92,12 +97,19 @@ private fun RecipesPreview() {
         val ingredients = listOf(
             Ingredient(name = "banana", amount = 0.25, unit = "cup")
         )
+        val location = Location(
+            name = "Singapore",
+            description = "Marker in Singapore",
+            latitude = 1.35,
+            longitude = 103.87
+        )
         val recipe = Recipe(
             name = "Example 1",
             description = "Description 1",
             image = "https://spoonacular.com/recipeImages/716426-312x231.jpg",
             showMapButton = true,
-            ingredients = ingredients
+            ingredients = ingredients,
+            location = location
         )
         RecipeDetailScreen(recipe = recipe)
     }
