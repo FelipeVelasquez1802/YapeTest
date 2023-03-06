@@ -1,4 +1,4 @@
-package com.yape.recipebooktest.recipe.mapper
+package com.yape.recipebooktest.common.mapper
 
 internal abstract class BaseMapper<View, Domain> {
     abstract fun fromViewToDomain(view: View): Domain

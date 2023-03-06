@@ -1,6 +1,7 @@
 package com.yape.recipebooktest.recipe.model
 
 import android.os.Parcelable
+import com.yape.recipebooktest.map.model.LocationView
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

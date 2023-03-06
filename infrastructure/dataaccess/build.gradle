@@ -37,14 +37,25 @@ android {
         }
         prod {
             dimension 'yape'
+            buildConfigField ("String", "HOSTNAME", "\"${HOSTNAME}\"")
         }
     }
 }
 
 dependencies {
+    def retrofit_version = '2.9.0'
+
     implementation project(path: ':domain')
 
     //Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt  "com.google.dagger:hilt-compiler:$hilt_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+
+    // Logging Interceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
 }

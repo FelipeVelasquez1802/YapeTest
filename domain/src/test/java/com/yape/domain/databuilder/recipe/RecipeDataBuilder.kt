@@ -1,6 +1,7 @@
 package com.yape.domain.databuilder.recipe
 
 import com.yape.domain.recipe.model.Ingredient
+import com.yape.domain.recipe.model.Location
 import com.yape.domain.recipe.model.Recipe
 
 internal class RecipeDataBuilder {
@@ -9,6 +10,7 @@ internal class RecipeDataBuilder {
     private var description: String = "Example"
     private var image: String = "www.image.com/image.png"
     private var ingredients = mutableListOf(IngredientDataBuilder().build())
+    private val location = LocationDataBuilder().build()
 
     fun withName(name: String): RecipeDataBuilder = this.apply { this.name = name }
 
@@ -26,6 +28,6 @@ internal class RecipeDataBuilder {
 
     fun build(): Recipe {
         val showMapButton = true
-        return Recipe(name, description, image, showMapButton, ingredients)
+        return Recipe(name, description, image, showMapButton, ingredients, location)
     }
 }

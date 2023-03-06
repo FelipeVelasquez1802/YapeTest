@@ -1,6 +1,7 @@
 package com.yape.recipebooktest.recipe.viewmodel
 
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.yape.domain.recipe.model.Recipe
 import com.yape.domain.recipe.service.RecipeService
@@ -16,14 +17,17 @@ internal open class RecipeViewModel @Inject constructor() : ViewModel() {
     protected lateinit var recipeService: RecipeService
 
     val recipes: MutableList<Recipe> = mutableStateListOf()
+    val isLoading = mutableStateOf(true)
 
     fun executeGetRecipes() {
+        isLoading.value = true
         CoroutineScope(IO).launch {
             val result = recipeService.consultRecipes()
             recipes.apply {
                 clear()
                 addAll(result)
             }
+            isLoading.value = false
         }
     }
 }

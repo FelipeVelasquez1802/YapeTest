@@ -1,7 +1,8 @@
-package com.yape.recipebooktest.recipe.mapper
+package com.yape.recipebooktest.map.mapper
 
 import com.yape.domain.recipe.model.Location
-import com.yape.recipebooktest.recipe.model.LocationView
+import com.yape.recipebooktest.map.model.LocationView
+import com.yape.recipebooktest.common.mapper.BaseMapper
 
 internal object LocationMapper : BaseMapper<LocationView, Location>() {
     override fun fromViewToDomain(view: LocationView): Location =

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -11,11 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.yape.domain.recipe.model.Location
-import com.yape.recipebooktest.map.activity.ui.theme.RecipeBookTestTheme
-import com.yape.recipebooktest.recipe.mapper.LocationMapper
-import com.yape.recipebooktest.recipe.model.KeyFieldEnum
-import com.yape.recipebooktest.recipe.model.LocationView
+import com.yape.recipebooktest.R
+import com.yape.recipebooktest.common.screen.AppBarScreen
+import com.yape.recipebooktest.map.mapper.LocationMapper
+import com.yape.recipebooktest.map.model.KeyLocationFieldEnum
+import com.yape.recipebooktest.map.model.LocationView
 import com.yape.recipebooktest.recipe.screen.MapScreen
+import com.yape.recipebooktest.ui.theme.RecipeBookTestTheme
 
 class MapActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +31,7 @@ class MapActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     val location = intent.getLocationOrNull()
-                    location?.let { MapScreen(location = it) } ?: run {
+                    location?.let { Map(location = it) } ?: run {
                         // TODO: Agregar mensaje de error
                     }
                 }
@@ -37,8 +40,16 @@ class MapActivity : ComponentActivity() {
     }
 
     private fun Intent.getLocationOrNull(): Location? {
-        val location: LocationView? = extras?.getParcelable(KeyFieldEnum.LOCATION_KEY.name)
+        val location: LocationView? = extras?.getParcelable(KeyLocationFieldEnum.LOCATION_KEY.name)
         return location?.let { LocationMapper.fromViewToDomain(location) }
+    }
+}
+
+@Composable
+private fun Map(location: Location) {
+    Column {
+        AppBarScreen(titleRes = R.string.title_map)
+        MapScreen(location = location)
     }
 }
 

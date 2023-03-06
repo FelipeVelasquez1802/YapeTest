@@ -20,7 +20,7 @@ import androidx.core.text.HtmlCompat
 import com.yape.domain.recipe.model.Ingredient
 import com.yape.domain.recipe.model.Location
 import com.yape.domain.recipe.model.Recipe
-import com.yape.recipebooktest.common.screen.Image
+import com.yape.recipebooktest.common.screen.ImageScreen
 import com.yape.recipebooktest.common.screen.Title
 import com.yape.recipebooktest.recipe.router.RecipeRouter
 import com.yape.recipebooktest.ui.theme.Multiplier_X100
@@ -30,13 +30,13 @@ import com.yape.recipebooktest.ui.theme.RecipeBookTestTheme
 @Composable
 fun RecipeDetailScreen(recipe: Recipe) {
     LazyColumn {
-        item { AppBar() }
-        item { Image(imagePath = recipe.image, modifier = Modifier.height(Multiplier_X100)) }
+        item { ImageScreen(imagePath = recipe.image, modifier = Modifier.height(Multiplier_X100)) }
         item {
             Title(
                 title = recipe.name,
                 modifier = Modifier.padding(horizontal = Multiplier_X4),
-                textAlign = TextAlign.Start
+                textAlign = TextAlign.Start,
+                style = MaterialTheme.typography.h5
             )
         }
         item { DescriptionScreen(description = recipe.description) }
@@ -51,23 +51,11 @@ fun RecipeDetailScreen(recipe: Recipe) {
 }
 
 @Composable
-private fun AppBar() {
-    TopAppBar {
-        Text(
-            text = "Recipe detail",
-            style = MaterialTheme.typography.h6,
-            modifier = Modifier.fillMaxWidth(),
-            textAlign = TextAlign.Center
-        )
-    }
-}
-
-@Composable
 private fun DescriptionScreen(description: String) {
     AndroidView(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = Multiplier_X4),
+            .padding(horizontal = Multiplier_X4, vertical = Multiplier_X4),
         factory = { context ->
             TextView(context).apply {
                 text = HtmlCompat.fromHtml(description, HtmlCompat.FROM_HTML_MODE_LEGACY)

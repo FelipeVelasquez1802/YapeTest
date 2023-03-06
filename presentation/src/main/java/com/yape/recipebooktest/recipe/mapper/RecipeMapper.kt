@@ -1,6 +1,8 @@
 package com.yape.recipebooktest.recipe.mapper
 
 import com.yape.domain.recipe.model.Recipe
+import com.yape.recipebooktest.common.mapper.BaseMapper
+import com.yape.recipebooktest.map.mapper.LocationMapper
 import com.yape.recipebooktest.recipe.model.RecipeView
 
 internal object RecipeMapper : BaseMapper<RecipeView, Recipe>() {
