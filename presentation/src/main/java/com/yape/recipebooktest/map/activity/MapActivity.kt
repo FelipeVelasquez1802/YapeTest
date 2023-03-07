@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.yape.domain.recipe.model.Location
 import com.yape.recipebooktest.R
 import com.yape.recipebooktest.common.screen.AppBarScreen
+import com.yape.recipebooktest.common.screen.ErrorScreen
 import com.yape.recipebooktest.map.mapper.LocationMapper
 import com.yape.recipebooktest.map.model.KeyLocationFieldEnum
 import com.yape.recipebooktest.map.model.LocationView
@@ -30,9 +31,12 @@ class MapActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    val onUpdate: ()->Unit = {
+                        recreate()
+                    }
                     val location = intent.getLocationOrNull()
                     location?.let { Map(location = it) } ?: run {
-                        // TODO: Agregar mensaje de error
+                        ErrorScreen(onUpdate = onUpdate)
                     }
                 }
             }
