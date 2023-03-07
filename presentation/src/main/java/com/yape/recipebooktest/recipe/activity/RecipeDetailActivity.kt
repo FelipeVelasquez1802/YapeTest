@@ -16,6 +16,7 @@ import com.yape.domain.recipe.model.Location
 import com.yape.domain.recipe.model.Recipe
 import com.yape.recipebooktest.R
 import com.yape.recipebooktest.common.screen.AppBarScreen
+import com.yape.recipebooktest.common.screen.ErrorScreen
 import com.yape.recipebooktest.recipe.mapper.RecipeMapper
 import com.yape.recipebooktest.recipe.model.KeyRecipeFieldEnum
 import com.yape.recipebooktest.recipe.model.RecipeView
@@ -32,11 +33,14 @@ class RecipeDetailActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    val onUpdate:()->Unit ={
+                        recreate()
+                    }
                     val recipe = intent.getRecipeOrNull()
                     recipe?.let {
                         RecipeDetail(it)
                     } ?: run {
-                        // TODO: Colocar mensaje de error
+                        ErrorScreen(onUpdate = onUpdate)
                     }
                 }
             }

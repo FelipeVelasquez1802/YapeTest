@@ -9,4 +9,7 @@
     <string name="title_map">Mapa</string>
     <string name="title_ingredients">Ingredientes</string>
     <string name="show_location">Ver ubicacion</string>
+    <string name="title_error">Oops, algo salió mal</string>
+    <string name="description_error">Parece que hemos encontrado un pequeño problema mientras intentábamos cargar la app. No te preocupes, ¡estamos trabajando en ello!</string>
+    <string name="button_error"> Dale otra oportunidad!</string>
 </resources>

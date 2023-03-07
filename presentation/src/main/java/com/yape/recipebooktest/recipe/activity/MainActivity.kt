@@ -24,9 +24,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import com.yape.domain.recipe.model.Recipe
 import com.yape.recipebooktest.R
+import com.yape.recipebooktest.recipe.model.KeyRecipeFieldEnum
 import com.yape.recipebooktest.recipe.screen.RecipesScreen
 import com.yape.recipebooktest.recipe.viewmodel.RecipeViewModel
 import com.yape.recipebooktest.ui.theme.Multiplier
@@ -68,7 +70,7 @@ private fun LoadingScreen() {
 }
 
 @Composable
-private fun MainScreen(recipes: List<Recipe>) {
+fun MainScreen(recipes: List<Recipe>) {
     Column {
         val filterRecipe = recipes.toMutableStateList()
         val onSearch: (key: String) -> Unit = { key ->
@@ -113,7 +115,9 @@ private fun SearchScreen(onSearch: (String) -> Unit) {
                     contentDescription = "ParamsEnum.SEARCH.value"
                 )
             },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag(KeyRecipeFieldEnum.SEARCH_KEY.name)
         )
     }
 }

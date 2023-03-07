@@ -16,6 +16,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -26,6 +27,7 @@ import com.yape.domain.recipe.model.Recipe
 import com.yape.recipebooktest.R
 import com.yape.recipebooktest.common.screen.ImageScreen
 import com.yape.recipebooktest.common.screen.Title
+import com.yape.recipebooktest.recipe.model.KeyRecipeFieldEnum
 import com.yape.recipebooktest.recipe.router.RecipeRouter
 import com.yape.recipebooktest.ui.theme.Multiplier_X2
 import com.yape.recipebooktest.ui.theme.Multiplier_X4
@@ -62,7 +64,9 @@ private fun EmptyListScreen() {
         Icon(
             painter = emptyList,
             contentDescription = description,
-            modifier = Modifier.padding(vertical = Multiplier_X4),
+            modifier = Modifier
+                .padding(vertical = Multiplier_X4)
+                .testTag(KeyRecipeFieldEnum.TITLE_EMPTY_LIST.name),
             tint = Purple700
         )
         val emptyListMessage = stringResource(id = R.string.message_emptyList)
@@ -83,11 +87,16 @@ private fun RecipeScreen(recipe: Recipe) {
             .clickable {
                 val router = RecipeRouter()
                 router.goToRecipeDetail(recipe)
-            },
+            }
+            .testTag(KeyRecipeFieldEnum.CARD_RECIPE.name),
         elevation = Multiplier_X2,
     ) {
         Column {
-            Title(title = recipe.name, style = MaterialTheme.typography.h6)
+            Title(
+                title = recipe.name,
+                style = MaterialTheme.typography.h6,
+                modifier = Modifier.testTag(KeyRecipeFieldEnum.CARD_TITLE.name)
+            )
             Divider()
             ImageScreen(imagePath = recipe.image)
         }
