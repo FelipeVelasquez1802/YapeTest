@@ -1,4 +1,4 @@
-package com.yape.recipebooktest.recipe.screen
+package com.yape.recipebooktest.map.screen
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -13,16 +13,16 @@ import com.yape.domain.recipe.model.Location
 
 @Composable
 fun MapScreen(location: Location) {
-    val singapore = LatLng(location.latitude, location.longitude)
+    val locationRecipe = LatLng(location.latitude, location.longitude)
     val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(singapore, 10f)
+        position = CameraPosition.fromLatLngZoom(locationRecipe, 10f)
     }
     GoogleMap(
         modifier = Modifier.fillMaxSize(),
         cameraPositionState = cameraPositionState
     ) {
         Marker(
-            state = MarkerState(position = singapore),
+            state = MarkerState(position = locationRecipe),
             title = location.name,
             snippet = location.description
         )

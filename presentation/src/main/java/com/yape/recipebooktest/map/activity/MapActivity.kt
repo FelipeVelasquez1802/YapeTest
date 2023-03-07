@@ -17,7 +17,7 @@ import com.yape.recipebooktest.common.screen.AppBarScreen
 import com.yape.recipebooktest.map.mapper.LocationMapper
 import com.yape.recipebooktest.map.model.KeyLocationFieldEnum
 import com.yape.recipebooktest.map.model.LocationView
-import com.yape.recipebooktest.recipe.screen.MapScreen
+import com.yape.recipebooktest.map.screen.MapScreen
 import com.yape.recipebooktest.ui.theme.RecipeBookTestTheme
 
 class MapActivity : ComponentActivity() {

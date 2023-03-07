@@ -10,9 +10,9 @@ import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
@@ -20,6 +20,7 @@ import androidx.core.text.HtmlCompat
 import com.yape.domain.recipe.model.Ingredient
 import com.yape.domain.recipe.model.Location
 import com.yape.domain.recipe.model.Recipe
+import com.yape.recipebooktest.R
 import com.yape.recipebooktest.common.screen.ImageScreen
 import com.yape.recipebooktest.common.screen.Title
 import com.yape.recipebooktest.recipe.router.RecipeRouter
@@ -41,11 +42,14 @@ fun RecipeDetailScreen(recipe: Recipe) {
         }
         item { DescriptionScreen(description = recipe.description) }
         item { Divider() }
-        item { Title(title = "Ingredientes", style = MaterialTheme.typography.subtitle1) }
+        item {
+            val titleIngredients = stringResource(id = R.string.title_ingredients)
+            Title(title = titleIngredients, style = MaterialTheme.typography.subtitle1)
+        }
         items(recipe.ingredients) { ingredient ->
             IngredientScreen(ingredient = ingredient)
         }
-        item { Divider() }
+        item { Divider(modifier = Modifier.padding(vertical = Multiplier_X4)) }
         item { MapButtonScreen(recipe.location) }
     }
 }
@@ -74,7 +78,8 @@ private fun MapButtonScreen(location: Location) {
             .padding(horizontal = Multiplier_X4)
             .fillMaxWidth()
     ) {
-        Text(text = "Ver ubicacion")
+        val showLocation = stringResource(id = R.string.show_location)
+        Text(text = showLocation)
     }
 }
 

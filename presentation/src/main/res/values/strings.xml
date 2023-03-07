@@ -7,4 +7,6 @@
     <string name="description_recipe_image">Prepara un delicioso plato en minutos con esta receta fácil de seguir.</string>
     <string name="title_recipe_detail">Detalles de la receta</string>
     <string name="title_map">Mapa</string>
+    <string name="title_ingredients">Ingredientes</string>
+    <string name="show_location">Ver ubicacion</string>
 </resources>
